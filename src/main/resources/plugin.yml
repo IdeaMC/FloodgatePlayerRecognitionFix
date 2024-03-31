@@ -1,0 +1,9 @@
+name: FloodgatePlayerRecognitionFix
+version: '${project.version}'
+main: fun.xiantiao.floodgateplayerrecognitionfix.FloodgatePlayerRecognitionFix
+api-version: '1.13'
+folia-supported: true
+depend: [ floodgate, Geyser-Spigot ]
+authors: [ xiantiao ]
+description: 修复使用Bukkit+Geyser+Floodgate时，基岩玩家被识别为Java玩家
+website: https://github.com/IdeaMC/FloodgatePlayerRecognitionFix
