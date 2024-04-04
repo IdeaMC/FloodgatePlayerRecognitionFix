@@ -2,12 +2,10 @@ package fun.xiantiao.floodgateplayerrecognitionfix;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.geysermc.floodgate.api.FloodgateApi;
 import org.geysermc.geyser.api.GeyserApi;
-
-import static org.bukkit.event.player.AsyncPlayerPreLoginEvent.Result.KICK_OTHER;
 
 /**
  * @author xiantiao
@@ -26,15 +24,14 @@ public final class FloodgatePlayerRecognitionFix extends JavaPlugin implements L
     }
 
     @EventHandler
-    public void onPlayerPreLogin(AsyncPlayerPreLoginEvent event) {
+    public void onPlayerJoin(PlayerJoinEvent event) {
         if (
-                !FloodgateApi.getInstance().isFloodgatePlayer(event.getUniqueId()) // 不是Floodgate玩家
-             && GeyserApi.api().isBedrockPlayer(event.getUniqueId())               // 是Geyser玩家
+                !FloodgateApi.getInstance().isFloodgatePlayer(event.getPlayer().getUniqueId()) // 不是Floodgate玩家
+             && GeyserApi.api().isBedrockPlayer(event.getPlayer().getUniqueId())               // 是Geyser玩家
             ) {
                 //拒绝进入
                 String kickMsg = getConfig().getString("msg","哎呀！ 出现了点问题 请重新进入！");
-                event.setKickMessage(kickMsg);
-                event.disallow(KICK_OTHER,kickMsg);
+                event.getPlayer().kickPlayer(kickMsg);
             }
     }
 }
