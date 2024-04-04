@@ -22,7 +22,6 @@ public final class FloodgatePlayerRecognitionFix extends JavaPlugin implements L
 
         new Metrics(this,21477);
     }
-
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         if (
